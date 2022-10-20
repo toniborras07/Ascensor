@@ -9,5 +9,6 @@ package ascensor;
  * @author Usuario
  */
 public class Edificio {
-    
+       
 }
+   
