@@ -8,16 +8,45 @@ import javax.swing.ImageIcon;
  *
  * @author Usuario
  */
-public class Interaze extends javax.swing.JFrame {
+public class View extends javax.swing.JFrame {
     ImageIcon imageAscensorOpen= new ImageIcon("ascOpen.png");
     ImageIcon imageAscensorClosed= new ImageIcon("ascClosed.png");
-
+    
     /**
      * Creates new form Interaze
      */
-    public Interaze() {
+    public View(Main p) {
+        this.prog = p;
         initComponents();
     }
+    
+     public void mostrar() {
+        this.pack();
+        this.setVisible(true);
+        try {
+            Thread.sleep(500);
+        } catch (Exception e) {
+        }
+        this.revalidate();
+        this.repaint();
+    }
+     
+     public void notificar(String s) {
+        switch(s) {
+            case "BajarPiso":
+                //Desplazar el ascensor abajo
+                break;
+            case "SubirPiso":
+                //Desplazar el ascensor arriba
+                break;
+            case "AbrirPuerta":
+                //Abrir la puerta
+                break;
+            case "CerrarPuerta":
+                //Cerrar la puerta
+                break;
+        }
+     }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -420,40 +449,7 @@ public class Interaze extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_baj4ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Interaze.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Interaze.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Interaze.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Interaze.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Interaze().setVisible(true);
-            }
-        });
-    }
+    private Main prog;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton baj1;
@@ -474,12 +470,7 @@ public class Interaze extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator10;
-    private javax.swing.JSeparator jSeparator11;
-    private javax.swing.JSeparator jSeparator12;
     private javax.swing.JSeparator jSeparator14;
     private javax.swing.JSeparator jSeparator15;
     private javax.swing.JSeparator jSeparator16;
@@ -487,9 +478,6 @@ public class Interaze extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator18;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JSeparator jSeparator7;
-    private javax.swing.JSeparator jSeparator8;
-    private javax.swing.JSeparator jSeparator9;
     private javax.swing.JLabel primero;
     private javax.swing.JLabel segundo;
     private javax.swing.JButton sub1;
