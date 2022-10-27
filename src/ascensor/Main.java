@@ -15,9 +15,9 @@ public class Main {
     
     private void inicio() {
         asc = new Ascensor(this);
-        con = new Controller(this);
         vis = new View(this);
         vis.mostrar();
+        con = new Controller(this);
         con.start();
         
     }
@@ -28,12 +28,12 @@ public class Main {
     
     //metodo para conseguir el modelo de datos
     public Ascensor getAscensor() {
-        return asc;
+        return this.asc;
     }
 
     //metodo para devolver la vista 
     public View getVista() {
-        return vis;
+        return this.vis;
     }
 
     //metodo que devuelve el controlador

@@ -1,6 +1,8 @@
 package ascensor;
 
 import ascensor.Ascensor.Estado;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -16,11 +18,12 @@ public class Controller extends Thread {
     private boolean acabar = false;
     Ascensor asc;
     View vista;
-
+    private boolean sleeping = false;
+    
     public Controller(Main p) {
         this.prog = p;
-        this.asc = this.prog.getAscensor();
-        this.vista = this.prog.getVista();
+        this.asc = p.getAscensor();
+        this.vista = p.getVista();
     }
 
     public void run() {
@@ -72,7 +75,13 @@ public class Controller extends Thread {
     private void subir() {
         vista.notificar("SubirPiso");
         asc.subirPiso();
-        vista.notificar("AbrirPuerta");
+        while(sleeping) {
+            try {
+                Thread.sleep(1);
+            } catch (InterruptedException ex) {
+                System.out.println(ex);
+            }
+        }
         asc.abrirPuerta();
         espera(5000);
         vista.notificar("CerrarPuerta");
@@ -83,11 +92,29 @@ public class Controller extends Thread {
     private void bajar() {
         vista.notificar("BajarPiso");
         asc.bajarPiso();
+        while(sleeping) {
+            try {
+                Thread.sleep(1);
+            } catch (InterruptedException ex) {
+                System.out.println(ex);
+            }
+        }
         vista.notificar("AbrirPuerta");
         asc.abrirPuerta();
         espera(5000);
         vista.notificar("CerrarPuerta");
         asc.cerrarPuerta();
         asc.quitarLlamadas(asc.getPisoActual(), false);
+    }
+    
+    public void notificar(String s) {
+        switch(s){
+            case "sleep":
+                this.sleeping = true;
+                break;
+            case "wake":
+                this.sleeping = false;
+                break;
+        }
     }
 }

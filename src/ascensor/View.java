@@ -94,7 +94,6 @@ public class View extends javax.swing.JFrame implements MouseListener {
             } else {
                 llegado = true;
             }
-
         }
     }
 
@@ -107,22 +106,14 @@ public class View extends javax.swing.JFrame implements MouseListener {
 
         switch (s) {
             case "BajarPiso":
-                y = this.Ascensor.getY();
-                nextFloor = y + this.Ascensor.getHeight();
-                llegado = false;
-                while (!llegado) {
-                    if (this.Ascensor.getY() != nextFloor) {
-                        this.Ascensor.setLocation(this.Ascensor.getX(), y + 2);
-                        this.repaint();
-
-                    }
-
-                }
+                this.prog.getController().notificar("sleep");
+                this.animacion(1);
+                this.prog.getController().notificar("wake");
                 break;
             case "SubirPiso":
-                System.out.println("ndjlvnjkdbnvjkd");
-               animacion(0);
-
+                this.prog.getController().notificar("sleep");
+                this.animacion(0);
+                this.prog.getController().notificar("wake");
             //break;
             case "AbrirPuerta":
                 wallpaper = new ImageIcon("src/img/abierto.png");
@@ -559,39 +550,50 @@ public class View extends javax.swing.JFrame implements MouseListener {
 
     private void sub3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sub3ActionPerformed
         // TODO add your handling code here:
+        Llamada l = new Llamada(3, true);
+        this.prog.getAscensor().addLlamada(l);
     }//GEN-LAST:event_sub3ActionPerformed
 
     private void sub2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sub2ActionPerformed
         // TODO add your handling code here:
+        Llamada l = new Llamada(2, true);
+        this.prog.getAscensor().addLlamada(l);
     }//GEN-LAST:event_sub2ActionPerformed
 
     private void sub1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sub1ActionPerformed
         // TODO add your handling code here:
-        System.out.println("hola");
-        
-        animacion(0);
-        
-
+        Llamada l = new Llamada(1, true);
+        this.prog.getAscensor().addLlamada(l);
     }//GEN-LAST:event_sub1ActionPerformed
 
     private void subBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subBActionPerformed
         // TODO add your handling code here:
+        Llamada l = new Llamada(0, true);
+        this.prog.getAscensor().addLlamada(l);
     }//GEN-LAST:event_subBActionPerformed
 
     private void baj1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_baj1ActionPerformed
         // TODO add your handling code here:
+        Llamada l = new Llamada(1, false);
+        this.prog.getAscensor().addLlamada(l);
     }//GEN-LAST:event_baj1ActionPerformed
 
     private void baj2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_baj2ActionPerformed
         // TODO add your handling code here:
+        Llamada l = new Llamada(2, false);
+        this.prog.getAscensor().addLlamada(l);
     }//GEN-LAST:event_baj2ActionPerformed
 
     private void baj3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_baj3ActionPerformed
         // TODO add your handling code here:
+        Llamada l = new Llamada(3, false);
+        this.prog.getAscensor().addLlamada(l);
     }//GEN-LAST:event_baj3ActionPerformed
 
     private void baj4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_baj4ActionPerformed
         // TODO add your handling code here:
+        Llamada l = new Llamada(4, false);
+        this.prog.getAscensor().addLlamada(l);
     }//GEN-LAST:event_baj4ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
