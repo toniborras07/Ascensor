@@ -19,6 +19,7 @@ public class Main {
         vis = new View(this);
         vis.mostrar();
         con.start();
+        
     }
     
     public static void main(String [] args) {
