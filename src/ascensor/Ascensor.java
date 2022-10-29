@@ -45,9 +45,16 @@ public class Ascensor {
     public void addLlamada(Llamada l) {
         pisosObjetivo.add(l);
     }
+    public void addSalida(Piso p){
+        pisosSalida.add(p);
+    }
     
     public int getPisoActual() {
         return this.pisoActual;
+    }
+    
+    public boolean puertaAbierta(){
+        return puertaAbierta;
     }
     
     public ArrayList<Llamada> getLlamadas(){
@@ -60,6 +67,10 @@ public class Ascensor {
     
      public void setEstado(Estado estado) {
         this.estado = estado;
+    }
+     
+     public Estado getEstado() {
+        return estado;
     }
     
     public void quitarLlamadas(int p, boolean subir) {

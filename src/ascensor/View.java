@@ -4,6 +4,7 @@
  */
 package ascensor;
 
+import ascensor.Ascensor.Piso;
 import java.awt.Image;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -175,12 +176,12 @@ public class View extends javax.swing.JFrame implements MouseListener {
         bajSegundo = new javax.swing.JLabel();
         bajPrimero = new javax.swing.JLabel();
         Ascensor = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        panelAsc = new javax.swing.JPanel();
+        asc4 = new javax.swing.JButton();
+        asc3 = new javax.swing.JButton();
+        asc2 = new javax.swing.JButton();
+        asc1 = new javax.swing.JButton();
+        ascBajo = new javax.swing.JButton();
 
         jLabel1.setText("jLabel1");
 
@@ -454,7 +455,7 @@ public class View extends javax.swing.JFrame implements MouseListener {
                 .addComponent(ediIzq, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Ascensor, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addComponent(ediDer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -467,55 +468,75 @@ public class View extends javax.swing.JFrame implements MouseListener {
                 .addComponent(Ascensor, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jButton1.setText("4º");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        asc4.setText("4º");
+        asc4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                asc4ActionPerformed(evt);
             }
         });
 
-        jButton2.setText("3º");
+        asc3.setText("3º");
+        asc3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                asc3ActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("2º");
+        asc2.setText("2º");
+        asc2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                asc2ActionPerformed(evt);
+            }
+        });
 
-        jButton4.setText("1º");
+        asc1.setText("1º");
+        asc1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                asc1ActionPerformed(evt);
+            }
+        });
 
-        jButton5.setText("Bajo");
+        ascBajo.setText("Bajo");
+        ascBajo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ascBajoActionPerformed(evt);
+            }
+        });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout panelAscLayout = new javax.swing.GroupLayout(panelAsc);
+        panelAsc.setLayout(panelAscLayout);
+        panelAscLayout.setHorizontalGroup(
+            panelAscLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelAscLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGroup(panelAscLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAscLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(jButton5))
+                        .addGroup(panelAscLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(asc2, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(asc1, javax.swing.GroupLayout.Alignment.TRAILING)))
+                    .addGroup(panelAscLayout.createSequentialGroup()
+                        .addGroup(panelAscLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelAscLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(asc3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(asc4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(ascBajo))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        panelAscLayout.setVerticalGroup(
+            panelAscLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelAscLayout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addComponent(jButton1)
+                .addComponent(asc4)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2)
+                .addComponent(asc3)
                 .addGap(18, 18, 18)
-                .addComponent(jButton3)
+                .addComponent(asc2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton4)
+                .addComponent(asc1)
                 .addGap(18, 18, 18)
-                .addComponent(jButton5)
+                .addComponent(ascBajo)
                 .addContainerGap(31, Short.MAX_VALUE))
         );
 
@@ -525,9 +546,9 @@ public class View extends javax.swing.JFrame implements MouseListener {
             exteriorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(exteriorLayout.createSequentialGroup()
                 .addGap(33, 33, 33)
-                .addComponent(fondo, javax.swing.GroupLayout.PREFERRED_SIZE, 458, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(fondo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(65, 65, 65)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panelAsc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(126, Short.MAX_VALUE))
         );
         exteriorLayout.setVerticalGroup(
@@ -536,7 +557,7 @@ public class View extends javax.swing.JFrame implements MouseListener {
                 .addGroup(exteriorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(exteriorLayout.createSequentialGroup()
                         .addGap(142, 142, 142)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(panelAsc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(exteriorLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(fondo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -596,14 +617,40 @@ public class View extends javax.swing.JFrame implements MouseListener {
         this.prog.getAscensor().addLlamada(l);
     }//GEN-LAST:event_baj4ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void asc4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_asc4ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        this.prog.getAscensor().addSalida(Piso.CUARTA);
+    }//GEN-LAST:event_asc4ActionPerformed
+
+    private void asc3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_asc3ActionPerformed
+        // TODO add your handling code here:
+        this.prog.getAscensor().addSalida(Piso.TERCERA);
+    }//GEN-LAST:event_asc3ActionPerformed
+
+    private void asc2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_asc2ActionPerformed
+        // TODO add your handling code here:
+        this.prog.getAscensor().addSalida(Piso.SEGUNDA);
+    }//GEN-LAST:event_asc2ActionPerformed
+
+    private void asc1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_asc1ActionPerformed
+        // TODO add your handling code here:
+        this.prog.getAscensor().addSalida(Piso.PRIMERA);
+    }//GEN-LAST:event_asc1ActionPerformed
+
+    private void ascBajoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ascBajoActionPerformed
+        // TODO add your handling code here:
+        this.prog.getAscensor().addSalida(Piso.BAJO);
+    }//GEN-LAST:event_ascBajoActionPerformed
 
     private Main prog;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Ascensor;
+    private javax.swing.JButton asc1;
+    private javax.swing.JButton asc2;
+    private javax.swing.JButton asc3;
+    private javax.swing.JButton asc4;
+    private javax.swing.JButton ascBajo;
     private javax.swing.JButton baj1;
     private javax.swing.JButton baj2;
     private javax.swing.JButton baj3;
@@ -617,14 +664,8 @@ public class View extends javax.swing.JFrame implements MouseListener {
     private javax.swing.JPanel ediIzq;
     private javax.swing.JPanel exterior;
     private javax.swing.JPanel fondo;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator14;
     private javax.swing.JSeparator jSeparator15;
@@ -633,6 +674,7 @@ public class View extends javax.swing.JFrame implements MouseListener {
     private javax.swing.JSeparator jSeparator18;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JPanel panelAsc;
     private javax.swing.JLabel primero;
     private javax.swing.JLabel segundo;
     private javax.swing.JButton sub1;
