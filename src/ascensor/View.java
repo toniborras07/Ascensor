@@ -106,15 +106,15 @@ public class View extends javax.swing.JFrame implements MouseListener {
 
         switch (s) {
             case "BajarPiso":
-                this.prog.getController().notificar("sleep");
+//                this.prog.getController().notificar("sleep");
                 this.animacion(1);
-                this.prog.getController().notificar("wake");
+//                this.prog.getController().notificar("wake");
                 break;
             case "SubirPiso":
-                this.prog.getController().notificar("sleep");
+//                this.prog.getController().notificar("sleep");
                 this.animacion(0);
-                this.prog.getController().notificar("wake");
-            //break;
+//                this.prog.getController().notificar("wake");
+            break;
             case "AbrirPuerta":
                 wallpaper = new ImageIcon("src/img/abierto.png");
                 icono = new ImageIcon(wallpaper.getImage().getScaledInstance(this.Ascensor.getWidth(), this.Ascensor.getHeight(), Image.SCALE_DEFAULT));

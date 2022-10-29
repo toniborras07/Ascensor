@@ -75,13 +75,15 @@ public class Controller extends Thread {
     private void subir() {
         vista.notificar("SubirPiso");
         asc.subirPiso();
-        while(sleeping) {
-            try {
-                Thread.sleep(1);
-            } catch (InterruptedException ex) {
-                System.out.println(ex);
-            }
-        }
+//        while(sleeping) {
+//            try {
+//                Thread.sleep(1);
+//            } catch (InterruptedException ex) {
+//                System.out.println(ex);
+//            }
+//        }
+        
+        vista.notificar("AbrirPuerta");
         asc.abrirPuerta();
         espera(5000);
         vista.notificar("CerrarPuerta");
@@ -107,14 +109,14 @@ public class Controller extends Thread {
         asc.quitarLlamadas(asc.getPisoActual(), false);
     }
     
-    public void notificar(String s) {
-        switch(s){
-            case "sleep":
-                this.sleeping = true;
-                break;
-            case "wake":
-                this.sleeping = false;
-                break;
-        }
-    }
+//    public void notificar(String s) {
+//        switch(s){
+//            case "sleep":
+//                this.sleeping = true;
+//                break;
+//            case "wake":
+//                this.sleeping = false;
+//                break;
+//        }
+//    }
 }
