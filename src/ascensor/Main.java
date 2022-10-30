@@ -18,9 +18,7 @@ public class Main {
         vis = new View(this);
         vis.mostrar();
         con = new Controller(this);
-        con.start();
-        int i; char k; 
-       
+        con.start();       
         
     }
     

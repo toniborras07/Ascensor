@@ -79,7 +79,7 @@ public class Ascensor {
         ps=this.pisosSalida.size();
         this.pisosObjetivo.removeIf(l -> (l.getPiso() == p && l.getSubir() == subir));
         this.pisosSalida.removeIf(pi -> pi.ordinal() == p);
-        return ((po!=this.pisosObjetivo.size()) && (ps!= this.pisosSalida.size()));
+        return ((po!=this.pisosObjetivo.size()) || (ps!= this.pisosSalida.size()));
         
     }
     

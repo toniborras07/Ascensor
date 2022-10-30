@@ -1,8 +1,6 @@
 package ascensor;
 
 import ascensor.Ascensor.Estado;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -18,7 +16,6 @@ public class Controller extends Thread {
     private boolean acabar = false;
     Ascensor asc;
     View vista;
-    private boolean sleeping = false;
 
     public Controller(Main p) {
         this.prog = p;
@@ -158,6 +155,10 @@ public class Controller extends Thread {
             vista.notificar("SubirPiso");
             asc.subirPiso();
 
+            if (l == null) {
+                l = new Llamada(asc.getPisoActual(), true);
+            }
+
             if (asc.getPisoActual() == objetivo) {
                 abrirPuerta();
                 asc.quitarLlamadas(asc.getPisoActual(), l.getSubir());
@@ -180,6 +181,9 @@ public class Controller extends Thread {
             vista.notificar("BajarPiso");
             asc.bajarPiso();
 
+            if (l == null) {
+                l = new Llamada(asc.getPisoActual(), false);
+            }
             if (asc.getPisoActual() == objetivo) {
                 abrirPuerta();
                 asc.quitarLlamadas(asc.getPisoActual(), l.getSubir());
