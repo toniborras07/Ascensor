@@ -27,18 +27,21 @@ public class Controller extends Thread {
     }
 
     public void run() {
+        int aviso = 0;
         while (!acabar) {
             if (this.asc.getSalidas().size() > 0) {
-                int pisoObjetivo = this.asc.getSalidas().get(0).ordinal();
+                int pisoObjetivo = this.asc.getSalidas().get(aviso).ordinal();
                 if (!asc.puertaAbierta()) {
                     if (pisoObjetivo > this.asc.getPisoActual()) {
                         if (asc.getEstado() == Estado.SUBIENDO || asc.getEstado() == Estado.PARADO) {
                             this.asc.setEstado(Estado.SUBIENDO);
                             subir(pisoObjetivo, null);
+
                         } else if (asc.getEstado() == Estado.BAJANDO) {
                             if (procede(false, 0) && procede(false, 2)) {
                                 this.asc.setEstado(Estado.SUBIENDO);
                                 subir(pisoObjetivo, null);
+
                             }
                         }
 
@@ -46,10 +49,12 @@ public class Controller extends Thread {
                         if (asc.getEstado() != Estado.SUBIENDO) {
                             this.asc.setEstado(Estado.BAJANDO);
                             bajar(pisoObjetivo, null);
+
                         } else if (asc.getEstado() == Estado.SUBIENDO) {
                             if (procede(true, 1) && procede(true, 3)) {
                                 this.asc.setEstado(Estado.BAJANDO);
                                 bajar(pisoObjetivo, null);
+
                             }
                         }
 
@@ -57,7 +62,7 @@ public class Controller extends Thread {
                 }
 
             } else if (this.asc.getLlamadas().size() > 0) {
-                Llamada l = this.asc.getLlamadas().get(0);
+                Llamada l = this.asc.getLlamadas().get(aviso);
                 int pisoObjetivo = l.getPiso();
                 boolean subir = l.getSubir();
 
@@ -67,10 +72,14 @@ public class Controller extends Thread {
                             if (asc.getEstado() == Estado.SUBIENDO || asc.getEstado() == Estado.PARADO) {
                                 this.asc.setEstado(Estado.SUBIENDO);
                                 subir(pisoObjetivo, l);
+                                aviso = 0;
                             } else if (asc.getEstado() == Estado.BAJANDO) {
                                 if (procede(false, 0) && procede(false, 2)) {
                                     this.asc.setEstado(Estado.SUBIENDO);
                                     subir(pisoObjetivo, l);
+                                    aviso = 0;
+                                } else {
+                                    aviso = aviso + 1;
                                 }
                             }
 
@@ -79,11 +88,15 @@ public class Controller extends Thread {
                                 if (procede(true, 1)) {
                                     this.asc.setEstado(Estado.BAJANDO);
                                     bajar(pisoObjetivo, l);
+                                    aviso = 0;
+                                } else {
+                                    aviso = aviso + 1;
                                 }
 
                             } else if (asc.getEstado() == Estado.BAJANDO) {
                                 this.asc.setEstado(Estado.BAJANDO);
                                 bajar(pisoObjetivo, l);
+                                aviso = 0;
 
                             }
 
@@ -93,10 +106,14 @@ public class Controller extends Thread {
                             if (asc.getEstado() == Estado.SUBIENDO || asc.getEstado() == Estado.PARADO) {
                                 this.asc.setEstado(Estado.SUBIENDO);
                                 subir(pisoObjetivo, l);
+                                aviso = 0;
                             } else if (asc.getEstado() == Estado.BAJANDO) {
                                 if (procede(false, 0) && procede(false, 2)) {
                                     this.asc.setEstado(Estado.SUBIENDO);
                                     subir(pisoObjetivo, l);
+                                    aviso = 0;
+                                } else {
+                                    aviso = aviso + 1;
                                 }
                             }
 
@@ -105,11 +122,15 @@ public class Controller extends Thread {
                                 if (procede(true, 1)) {
                                     this.asc.setEstado(Estado.BAJANDO);
                                     bajar(pisoObjetivo, l);
+                                    aviso = 0;
+                                } else {
+                                    aviso = aviso + 1;
                                 }
 
                             } else if (asc.getEstado() == Estado.BAJANDO) {
                                 this.asc.setEstado(Estado.BAJANDO);
                                 bajar(pisoObjetivo, l);
+                                aviso = 0;
 
                             }
 
@@ -144,24 +165,8 @@ public class Controller extends Thread {
 //                asc.setEstado(Estado.PARADO);
 
             } else {
-                boolean fin = false;
-                int i = 0;
-                while (!fin) {
-                    if ((i < asc.getLlamadas().size())
-                            && (asc.getLlamadas().get(i).getPiso() == asc.getPisoActual())
-                            && (asc.getLlamadas().get(i).getSubir())) {
-                        abrirPuerta();
-                        asc.quitarLlamadas(asc.getPisoActual(), l.getSubir());
-                        fin = true;
-                    } else {
-                        if (i >= asc.getLlamadas().size()) {
-                            fin = true;
-                        } else {
-                            i++;
-                        }
-
-                    }
-
+                if (asc.quitarLlamadas(asc.getPisoActual(), l.getSubir())) {
+                    abrirPuerta();
                 }
 
             }
@@ -181,24 +186,8 @@ public class Controller extends Thread {
                 end = true;
 
             } else {
-                boolean fin = false;
-                int i = 0;
-                while (!fin) {
-                    if ((i < asc.getLlamadas().size())
-                            && (asc.getLlamadas().get(i).getPiso() == asc.getPisoActual())
-                            && !(asc.getLlamadas().get(i).getSubir())) {
-                        abrirPuerta();
-                        asc.quitarLlamadas(asc.getPisoActual(), l.getSubir());
-                        fin = true;
-                    } else {
-                        if (i >= asc.getLlamadas().size()) {
-                            fin = true;
-                        } else {
-                            i++;
-                        }
-
-                    }
-
+                if (asc.quitarLlamadas(asc.getPisoActual(), l.getSubir())) {
+                    abrirPuerta();
                 }
 
             }
@@ -212,8 +201,7 @@ public class Controller extends Thread {
             switch (opcion) {
                 case 0:
                     if ((i < asc.getLlamadas().size())
-                            && (asc.getLlamadas().get(i).getPiso() < asc.getPisoActual())
-                            && (asc.getLlamadas().get(i).getSubir() == subir)) {
+                            && (asc.getLlamadas().get(i).getPiso() < asc.getPisoActual())) {
                         return false;
                     } else if (i >= asc.getLlamadas().size()) {
                         fin = true;
@@ -221,8 +209,7 @@ public class Controller extends Thread {
                     break;
                 case 1:
                     if ((i < asc.getLlamadas().size())
-                            && (asc.getLlamadas().get(i).getPiso() > asc.getPisoActual())
-                            && (asc.getLlamadas().get(i).getSubir() == subir)) {
+                            && (asc.getLlamadas().get(i).getPiso() > asc.getPisoActual())) {
                         return false;
                     } else if (i >= asc.getLlamadas().size()) {
                         fin = true;

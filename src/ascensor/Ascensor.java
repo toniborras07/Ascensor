@@ -73,9 +73,14 @@ public class Ascensor {
         return estado;
     }
     
-    public void quitarLlamadas(int p, boolean subir) {
+    public boolean quitarLlamadas(int p, boolean subir) {
+        int po,ps;
+        po=this.pisosObjetivo.size();
+        ps=this.pisosSalida.size();
         this.pisosObjetivo.removeIf(l -> (l.getPiso() == p && l.getSubir() == subir));
         this.pisosSalida.removeIf(pi -> pi.ordinal() == p);
+        return ((po!=this.pisosObjetivo.size()) && (ps!= this.pisosSalida.size()));
+        
     }
     
     public void subirPiso(){
