@@ -20,6 +20,9 @@ public class View extends javax.swing.JFrame implements MouseListener {
 
     ImageIcon imageAscensorOpen = new ImageIcon("ascOpen.png");
     ImageIcon imageAscensorClosed = new ImageIcon("ascClosed.png");
+    ImageIcon verde = new ImageIcon("src/img/verde.png");
+    ImageIcon rojo = new ImageIcon("src/img/rojo.png");
+
     boolean subir;
 
     /**
@@ -28,7 +31,6 @@ public class View extends javax.swing.JFrame implements MouseListener {
     public View(Main p) {
         this.prog = p;
         initComponents();
-        
 
     }
 
@@ -41,7 +43,36 @@ public class View extends javax.swing.JFrame implements MouseListener {
 
         ImageIcon wallpaper = new ImageIcon("src/img/cerrado.png");
         Icon icono = new ImageIcon(wallpaper.getImage().getScaledInstance(this.Ascensor.getWidth(), this.Ascensor.getHeight(), Image.SCALE_DEFAULT));
+        Icon icono1 = new ImageIcon(rojo.getImage().getScaledInstance(this.bajPrimero.getWidth(), this.bajPrimero.getHeight(), Image.SCALE_DEFAULT));
+        Icon icono2 = new ImageIcon(rojo.getImage().getScaledInstance(this.bajSegundo.getWidth(), this.bajSegundo.getHeight(), Image.SCALE_DEFAULT));
+        Icon icono3 = new ImageIcon(rojo.getImage().getScaledInstance(this.bajtercero.getWidth(), this.bajtercero.getHeight(), Image.SCALE_DEFAULT));
+        Icon icono4 = new ImageIcon(rojo.getImage().getScaledInstance(this.bajCuarto.getWidth(), this.bajCuarto.getHeight(), Image.SCALE_DEFAULT));
+        Icon icono5 = new ImageIcon(rojo.getImage().getScaledInstance(this.subPrimero.getWidth(), this.subPrimero.getHeight(), Image.SCALE_DEFAULT));
+        Icon icono6 = new ImageIcon(rojo.getImage().getScaledInstance(this.subSegundo.getWidth(), this.subSegundo.getHeight(), Image.SCALE_DEFAULT));
+        Icon icono7 = new ImageIcon(rojo.getImage().getScaledInstance(this.subTercero.getWidth(), this.subTercero.getHeight(), Image.SCALE_DEFAULT));
+        Icon icono8 = new ImageIcon(rojo.getImage().getScaledInstance(this.subBajo.getWidth(), this.subBajo.getHeight(), Image.SCALE_DEFAULT));
+
+        Icon icono11 = new ImageIcon(rojo.getImage().getScaledInstance(this.jLabel2.getWidth(), this.jLabel2.getHeight(), Image.SCALE_DEFAULT));
+        Icon icono22 = new ImageIcon(rojo.getImage().getScaledInstance(this.jLabel3.getWidth(), this.jLabel3.getHeight(), Image.SCALE_DEFAULT));
+        Icon icono33 = new ImageIcon(rojo.getImage().getScaledInstance(this.jLabel4.getWidth(), this.jLabel4.getHeight(), Image.SCALE_DEFAULT));
+        Icon icono44 = new ImageIcon(rojo.getImage().getScaledInstance(this.jLabel5.getWidth(), this.jLabel5.getHeight(), Image.SCALE_DEFAULT));
+        Icon icono55 = new ImageIcon(rojo.getImage().getScaledInstance(this.jLabel6.getWidth(), this.jLabel6.getHeight(), Image.SCALE_DEFAULT));
+
         this.Ascensor.setIcon(icono);
+        this.subBajo.setIcon(icono8);
+        this.bajPrimero.setIcon(icono1);
+        this.bajSegundo.setIcon(icono2);
+        this.bajtercero.setIcon(icono3);
+        this.bajCuarto.setIcon(icono4);
+        this.subPrimero.setIcon(icono5);
+        this.subSegundo.setIcon(icono6);
+        this.subTercero.setIcon(icono7);
+
+        this.jLabel2.setIcon(icono11);
+        this.jLabel3.setIcon(icono22);
+        this.jLabel4.setIcon(icono33);
+        this.jLabel5.setIcon(icono44);
+        this.jLabel6.setIcon(icono55);
         try {
             Thread.sleep(500);
         } catch (Exception e) {
@@ -51,9 +82,8 @@ public class View extends javax.swing.JFrame implements MouseListener {
         this.revalidate();
         //this.repaint();
         this.setVisible(true);
-       
-//        animacion(0);
 
+//        animacion(0);
     }
 
     public void animacion(int n) {
@@ -76,13 +106,12 @@ public class View extends javax.swing.JFrame implements MouseListener {
                 if (n == 0) {
                     this.Ascensor.setLocation(this.Ascensor.getX(), this.Ascensor.getY() - 1);
                     this.Ascensor.repaint();
-                    
+
                 } else {
                     this.Ascensor.setLocation(this.Ascensor.getX(), this.Ascensor.getY() + 1);
                     this.Ascensor.repaint();
                 }
 
-                
                 try {
                     //PARALIZACIÓN DE LA EJECUCIÓN DURANTE RETRASO/1000 SEGUNDOS
                     //PARA SIMULAR LA VELOCIDAD DEL MOVIMIENTO DE LA
@@ -107,15 +136,11 @@ public class View extends javax.swing.JFrame implements MouseListener {
 
         switch (s) {
             case "BajarPiso":
-//                this.prog.getController().notificar("sleep");
                 this.animacion(1);
-//                this.prog.getController().notificar("wake");
                 break;
             case "SubirPiso":
-//                this.prog.getController().notificar("sleep");
                 this.animacion(0);
-//                this.prog.getController().notificar("wake");
-            break;
+                break;
             case "AbrirPuerta":
                 wallpaper = new ImageIcon("src/img/abierto.png");
                 icono = new ImageIcon(wallpaper.getImage().getScaledInstance(this.Ascensor.getWidth(), this.Ascensor.getHeight(), Image.SCALE_DEFAULT));
@@ -126,10 +151,58 @@ public class View extends javax.swing.JFrame implements MouseListener {
                 wallpaper = new ImageIcon("src/img/cerrado.png");
                 icono = new ImageIcon(wallpaper.getImage().getScaledInstance(this.Ascensor.getWidth(), this.Ascensor.getHeight(), Image.SCALE_DEFAULT));
                 this.Ascensor.setIcon(icono);
+                this.cambiarLuzBoton(this.prog.getAscensor().getPisoActual());
                 this.repaint();
                 break;
         }
 
+    }
+
+    public void cambiarLuzBoton(int piso) {
+        switch (piso) {
+            case 0:
+                this.subBajo.setIcon(new ImageIcon(rojo.getImage().getScaledInstance(this.subBajo.getWidth(),
+                        this.subBajo.getHeight(), Image.SCALE_DEFAULT)));
+                this.jLabel6.setIcon(new ImageIcon(rojo.getImage().getScaledInstance(this.jLabel6.getWidth(),
+                        this.jLabel6.getHeight(), Image.SCALE_DEFAULT)));
+                this.repaint();
+                break;
+            case 1:
+                this.subPrimero.setIcon(new ImageIcon(rojo.getImage().getScaledInstance(this.subPrimero.getWidth(),
+                        this.subPrimero.getHeight(), Image.SCALE_DEFAULT)));
+                this.bajPrimero.setIcon(new ImageIcon(rojo.getImage().getScaledInstance(this.bajPrimero.getWidth(),
+                        this.bajPrimero.getHeight(), Image.SCALE_DEFAULT)));
+                this.jLabel5.setIcon(new ImageIcon(rojo.getImage().getScaledInstance(this.jLabel5.getWidth(),
+                        this.jLabel5.getHeight(), Image.SCALE_DEFAULT)));
+                this.repaint();
+                break;
+            case 2:
+                this.subSegundo.setIcon(new ImageIcon(rojo.getImage().getScaledInstance(this.subSegundo.getWidth(),
+                        this.subSegundo.getHeight(), Image.SCALE_DEFAULT)));
+                this.bajSegundo.setIcon(new ImageIcon(rojo.getImage().getScaledInstance(this.bajSegundo.getWidth(),
+                        this.bajSegundo.getHeight(), Image.SCALE_DEFAULT)));
+                this.jLabel4.setIcon(new ImageIcon(rojo.getImage().getScaledInstance(this.jLabel4.getWidth(),
+                        this.jLabel4.getHeight(), Image.SCALE_DEFAULT)));
+                this.repaint();
+                break;
+            case 3:
+                this.subTercero.setIcon(new ImageIcon(rojo.getImage().getScaledInstance(this.subTercero.getWidth(),
+                        this.subTercero.getHeight(), Image.SCALE_DEFAULT)));
+                this.bajtercero.setIcon(new ImageIcon(rojo.getImage().getScaledInstance(this.bajtercero.getWidth(),
+                        this.bajtercero.getHeight(), Image.SCALE_DEFAULT)));
+                this.jLabel3.setIcon(new ImageIcon(rojo.getImage().getScaledInstance(this.jLabel3.getWidth(),
+                        this.jLabel3.getHeight(), Image.SCALE_DEFAULT)));
+                this.repaint();
+                break;
+            case 4:
+                this.bajCuarto.setIcon(new ImageIcon(rojo.getImage().getScaledInstance(this.bajCuarto.getWidth(),
+                        this.bajCuarto.getHeight(), Image.SCALE_DEFAULT)));
+                this.jLabel2.setIcon(new ImageIcon(rojo.getImage().getScaledInstance(this.jLabel2.getWidth(),
+                        this.jLabel2.getHeight(), Image.SCALE_DEFAULT)));
+                this.repaint();
+                break;
+
+        }
     }
 
     /**
@@ -180,8 +253,13 @@ public class View extends javax.swing.JFrame implements MouseListener {
         asc4 = new javax.swing.JButton();
         asc3 = new javax.swing.JButton();
         asc2 = new javax.swing.JButton();
-        asc1 = new javax.swing.JButton();
         ascBajo = new javax.swing.JButton();
+        asc1 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
         jLabel1.setText("jLabel1");
 
@@ -271,8 +349,8 @@ public class View extends javax.swing.JFrame implements MouseListener {
                                 .addComponent(jLabel10)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ediIzqLayout.createSequentialGroup()
-                                .addGap(0, 28, Short.MAX_VALUE)
-                                .addComponent(subTercero)
+                                .addGap(0, 60, Short.MAX_VALUE)
+                                .addComponent(subTercero, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(sub3))))
                     .addGroup(ediIzqLayout.createSequentialGroup()
@@ -284,15 +362,15 @@ public class View extends javax.swing.JFrame implements MouseListener {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(ediIzqLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ediIzqLayout.createSequentialGroup()
-                                .addComponent(subSegundo)
+                                .addComponent(subSegundo, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(sub2))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ediIzqLayout.createSequentialGroup()
-                                .addComponent(subBajo)
+                                .addComponent(subBajo, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(subB))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ediIzqLayout.createSequentialGroup()
-                                .addComponent(subPrimero)
+                                .addComponent(subPrimero, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(sub1)))))
                 .addContainerGap())
@@ -397,20 +475,20 @@ public class View extends javax.swing.JFrame implements MouseListener {
                     .addGroup(ediDerLayout.createSequentialGroup()
                         .addComponent(baj1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(bajPrimero))
+                        .addComponent(bajPrimero, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(ediDerLayout.createSequentialGroup()
                         .addComponent(baj2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(bajSegundo))
+                        .addComponent(bajSegundo, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(ediDerLayout.createSequentialGroup()
                         .addComponent(baj3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(bajtercero))
+                        .addComponent(bajtercero, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(ediDerLayout.createSequentialGroup()
                         .addComponent(baj4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(bajCuarto)))
-                .addContainerGap(26, Short.MAX_VALUE))
+                        .addComponent(bajCuarto, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(65, Short.MAX_VALUE))
             .addComponent(jSeparator16, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         ediDerLayout.setVerticalGroup(
@@ -435,9 +513,9 @@ public class View extends javax.swing.JFrame implements MouseListener {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator17, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(ediDerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(baj1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(bajPrimero, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGroup(ediDerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(baj1)
+                    .addComponent(bajPrimero))
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(114, 114, 114))
@@ -455,7 +533,7 @@ public class View extends javax.swing.JFrame implements MouseListener {
                 .addComponent(ediIzq, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Ascensor, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(ediDer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -489,13 +567,6 @@ public class View extends javax.swing.JFrame implements MouseListener {
             }
         });
 
-        asc1.setText("1º");
-        asc1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                asc1ActionPerformed(evt);
-            }
-        });
-
         ascBajo.setText("Bajo");
         ascBajo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -503,40 +574,77 @@ public class View extends javax.swing.JFrame implements MouseListener {
             }
         });
 
+        asc1.setText("1º");
+        asc1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                asc1ActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("jLabel2");
+
+        jLabel3.setText("jLabel3");
+
+        jLabel4.setText("jLabel4");
+
+        jLabel5.setText("jLabel5");
+
+        jLabel6.setText("jLabel6");
+
         javax.swing.GroupLayout panelAscLayout = new javax.swing.GroupLayout(panelAsc);
         panelAsc.setLayout(panelAscLayout);
         panelAscLayout.setHorizontalGroup(
             panelAscLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelAscLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panelAscLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAscLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(panelAscLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(asc2, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(asc1, javax.swing.GroupLayout.Alignment.TRAILING)))
+                .addGroup(panelAscLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(panelAscLayout.createSequentialGroup()
+                        .addGroup(panelAscLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(asc3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(asc4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(panelAscLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelAscLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(asc3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(asc4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(ascBajo))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(panelAscLayout.createSequentialGroup()
+                        .addComponent(ascBajo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
+                    .addGroup(panelAscLayout.createSequentialGroup()
+                        .addComponent(asc2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
+                    .addGroup(panelAscLayout.createSequentialGroup()
+                        .addComponent(asc1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         panelAscLayout.setVerticalGroup(
             panelAscLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelAscLayout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(asc4)
+                .addGap(39, 39, 39)
+                .addGroup(panelAscLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(asc4)
+                    .addComponent(jLabel2))
                 .addGap(18, 18, 18)
-                .addComponent(asc3)
+                .addGroup(panelAscLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(asc3)
+                    .addComponent(jLabel3))
                 .addGap(18, 18, 18)
-                .addComponent(asc2)
+                .addGroup(panelAscLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(asc2)
+                    .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(asc1)
+                .addGroup(panelAscLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(asc1)
+                    .addGroup(panelAscLayout.createSequentialGroup()
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(8, 8, 8)))
                 .addGap(18, 18, 18)
-                .addComponent(ascBajo)
+                .addGroup(panelAscLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ascBajo)
+                    .addComponent(jLabel6))
                 .addContainerGap(31, Short.MAX_VALUE))
         );
 
@@ -546,21 +654,21 @@ public class View extends javax.swing.JFrame implements MouseListener {
             exteriorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(exteriorLayout.createSequentialGroup()
                 .addGap(33, 33, 33)
-                .addComponent(fondo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(65, 65, 65)
+                .addComponent(fondo, javax.swing.GroupLayout.PREFERRED_SIZE, 458, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47)
                 .addComponent(panelAsc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(126, Short.MAX_VALUE))
+                .addContainerGap(182, Short.MAX_VALUE))
         );
         exteriorLayout.setVerticalGroup(
             exteriorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(exteriorLayout.createSequentialGroup()
                 .addGroup(exteriorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(exteriorLayout.createSequentialGroup()
-                        .addGap(142, 142, 142)
-                        .addComponent(panelAsc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(exteriorLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(fondo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(fondo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(exteriorLayout.createSequentialGroup()
+                        .addGap(146, 146, 146)
+                        .addComponent(panelAsc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(49, Short.MAX_VALUE))
         );
 
@@ -572,73 +680,116 @@ public class View extends javax.swing.JFrame implements MouseListener {
     private void sub3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sub3ActionPerformed
         // TODO add your handling code here:
         Llamada l = new Llamada(3, true);
+        this.subTercero.setIcon(new ImageIcon(verde.getImage().getScaledInstance(this.subTercero.getWidth(),
+                this.subTercero.getHeight(), Image.SCALE_DEFAULT)));
+        this.repaint();
         this.prog.getAscensor().addLlamada(l);
     }//GEN-LAST:event_sub3ActionPerformed
 
     private void sub2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sub2ActionPerformed
         // TODO add your handling code here:
         Llamada l = new Llamada(2, true);
+        this.subSegundo.setIcon(new ImageIcon(verde.getImage().getScaledInstance(this.subSegundo.getWidth(),
+                this.subSegundo.getHeight(), Image.SCALE_DEFAULT)));
+        this.repaint();
         this.prog.getAscensor().addLlamada(l);
     }//GEN-LAST:event_sub2ActionPerformed
 
     private void sub1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sub1ActionPerformed
         // TODO add your handling code here:
         Llamada l = new Llamada(1, true);
+        this.subPrimero.setIcon(new ImageIcon(verde.getImage().getScaledInstance(this.subPrimero.getWidth(),
+                this.subPrimero.getHeight(), Image.SCALE_DEFAULT)));
+        this.repaint();
         this.prog.getAscensor().addLlamada(l);
     }//GEN-LAST:event_sub1ActionPerformed
 
     private void subBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subBActionPerformed
         // TODO add your handling code here:
         Llamada l = new Llamada(0, true);
+        this.subBajo.setIcon(new ImageIcon(verde.getImage().getScaledInstance(this.subBajo.getWidth(),
+                this.subBajo.getHeight(), Image.SCALE_DEFAULT)));
+        this.repaint();
         this.prog.getAscensor().addLlamada(l);
     }//GEN-LAST:event_subBActionPerformed
 
     private void baj1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_baj1ActionPerformed
         // TODO add your handling code here:
         Llamada l = new Llamada(1, false);
+        this.bajPrimero.setIcon(new ImageIcon(verde.getImage().getScaledInstance(this.bajPrimero.getWidth(),
+                this.bajPrimero.getHeight(), Image.SCALE_DEFAULT)));
+        this.repaint();
         this.prog.getAscensor().addLlamada(l);
     }//GEN-LAST:event_baj1ActionPerformed
 
     private void baj2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_baj2ActionPerformed
         // TODO add your handling code here:
         Llamada l = new Llamada(2, false);
+        this.bajSegundo.setIcon(new ImageIcon(verde.getImage().getScaledInstance(this.bajSegundo.getWidth(),
+                this.bajSegundo.getHeight(), Image.SCALE_DEFAULT)));
+        this.repaint();
         this.prog.getAscensor().addLlamada(l);
     }//GEN-LAST:event_baj2ActionPerformed
 
     private void baj3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_baj3ActionPerformed
         // TODO add your handling code here:
         Llamada l = new Llamada(3, false);
+        this.bajtercero.setIcon(new ImageIcon(verde.getImage().getScaledInstance(this.bajtercero.getWidth(),
+                this.bajtercero.getHeight(), Image.SCALE_DEFAULT)));
+        this.repaint();
         this.prog.getAscensor().addLlamada(l);
     }//GEN-LAST:event_baj3ActionPerformed
 
     private void baj4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_baj4ActionPerformed
         // TODO add your handling code here:
         Llamada l = new Llamada(4, false);
+        this.bajCuarto.setIcon(new ImageIcon(verde.getImage().getScaledInstance(this.bajCuarto.getWidth(),
+                this.bajCuarto.getHeight(), Image.SCALE_DEFAULT)));
+        this.repaint();
         this.prog.getAscensor().addLlamada(l);
     }//GEN-LAST:event_baj4ActionPerformed
 
     private void asc4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_asc4ActionPerformed
         // TODO add your handling code here:
-        this.prog.getAscensor().addSalida(Piso.CUARTA);
+       
+        this.jLabel2.setIcon(new ImageIcon(verde.getImage().getScaledInstance(this.jLabel2.getWidth(),
+                        this.jLabel2.getHeight(), Image.SCALE_DEFAULT)));
+        this.repaint();
+         this.prog.getAscensor().addSalida(Piso.CUARTA);
     }//GEN-LAST:event_asc4ActionPerformed
 
     private void asc3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_asc3ActionPerformed
         // TODO add your handling code here:
+        
+        this.jLabel3.setIcon(new ImageIcon(verde.getImage().getScaledInstance(this.jLabel3.getWidth(),
+                        this.jLabel3.getHeight(), Image.SCALE_DEFAULT)));
+        this.repaint();
         this.prog.getAscensor().addSalida(Piso.TERCERA);
     }//GEN-LAST:event_asc3ActionPerformed
 
     private void asc2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_asc2ActionPerformed
         // TODO add your handling code here:
-        this.prog.getAscensor().addSalida(Piso.SEGUNDA);
+       
+        this.jLabel4.setIcon(new ImageIcon(verde.getImage().getScaledInstance(this.jLabel4.getWidth(),
+                        this.jLabel4.getHeight(), Image.SCALE_DEFAULT)));
+        this.repaint();
+         this.prog.getAscensor().addSalida(Piso.SEGUNDA);
     }//GEN-LAST:event_asc2ActionPerformed
 
     private void asc1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_asc1ActionPerformed
         // TODO add your handling code here:
+        
+        this.jLabel5.setIcon(new ImageIcon(verde.getImage().getScaledInstance(this.jLabel5.getWidth(),
+                        this.jLabel5.getHeight(), Image.SCALE_DEFAULT)));
+        this.repaint();
         this.prog.getAscensor().addSalida(Piso.PRIMERA);
     }//GEN-LAST:event_asc1ActionPerformed
 
     private void ascBajoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ascBajoActionPerformed
         // TODO add your handling code here:
+        this.jLabel6.setIcon(new ImageIcon(verde.getImage().getScaledInstance(this.jLabel6.getWidth(),
+                        this.jLabel6.getHeight(), Image.SCALE_DEFAULT)));
+        this.repaint();
         this.prog.getAscensor().addSalida(Piso.BAJO);
     }//GEN-LAST:event_ascBajoActionPerformed
 
@@ -666,6 +817,11 @@ public class View extends javax.swing.JFrame implements MouseListener {
     private javax.swing.JPanel fondo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator14;
     private javax.swing.JSeparator jSeparator15;

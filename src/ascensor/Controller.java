@@ -80,7 +80,7 @@ public class Controller extends Thread {
                                 }
                             }
 
-                        } else {
+                        } else if (pisoObjetivo < this.asc.getPisoActual()) {
                             if (asc.getEstado() == Estado.SUBIENDO || asc.getEstado() == Estado.PARADO) {
                                 if (procede(true, 1)) {
                                     this.asc.setEstado(Estado.BAJANDO);
@@ -97,6 +97,9 @@ public class Controller extends Thread {
 
                             }
 
+                        } else if (pisoObjetivo == this.asc.getPisoActual()) {
+                            abrirPuerta();
+                            asc.quitarLlamadas(asc.getPisoActual(), l.getSubir());
                         }
                     } else { //BAJAR
                         if (pisoObjetivo > this.asc.getPisoActual()) {
@@ -114,7 +117,7 @@ public class Controller extends Thread {
                                 }
                             }
 
-                        } else {
+                        } else if (pisoObjetivo < this.asc.getPisoActual()) {
                             if (asc.getEstado() == Estado.SUBIENDO || asc.getEstado() == Estado.PARADO) {
                                 if (procede(true, 1)) {
                                     this.asc.setEstado(Estado.BAJANDO);
@@ -131,6 +134,9 @@ public class Controller extends Thread {
 
                             }
 
+                        } else if (pisoObjetivo == this.asc.getPisoActual()) {
+                            abrirPuerta();
+                            asc.quitarLlamadas(asc.getPisoActual(), l.getSubir());
                         }
 
                     }
