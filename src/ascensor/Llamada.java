@@ -6,7 +6,7 @@ package ascensor;
 
 /**
  *
- * @author XAMAP
+ * @author Xavier Matas y Antonio Borrás
  */
 public class Llamada {
     private int piso;

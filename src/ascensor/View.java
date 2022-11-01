@@ -14,7 +14,7 @@ import javax.swing.JLabel;
 
 /**
  *
- * @author Usuario
+ * @author Xavier Matas y Antonio Borrás
  */
 public class View extends javax.swing.JFrame implements MouseListener {
 

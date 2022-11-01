@@ -8,7 +8,7 @@ import ascensor.Ascensor.Estado;
  */
 /**
  *
- * @author XAMAP
+ * @author Xavier Matas y Antonio Borrás
  */
 public class Controller extends Thread {
 

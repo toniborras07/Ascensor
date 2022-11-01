@@ -5,8 +5,8 @@
 package ascensor;
 
 /**
- *
- * @author XAMAP
+ * 
+ * @author Xavier Matas y Antonio Borrás
  */
 public class Main {
     private Ascensor asc;    // Punter al Model del patró

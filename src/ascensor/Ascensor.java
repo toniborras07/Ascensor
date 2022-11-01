@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Usuario
+ * @author Xavier Matas y Antonio Borrás
  */
 
 
